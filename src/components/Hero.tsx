@@ -72,19 +72,19 @@ export default function Hero() {
             <GridBackground />
             <NetworkCanvas />
 
-            <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 w-full flex flex-col items-center justify-center">
-                <div className="grid lg:grid-cols-5 gap-12 items-center w-full max-w-4xl lg:max-w-none mx-auto text-center lg:text-left">
+            <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 w-full flex flex-col items-center justify-center min-w-0">
+                <div className="grid lg:grid-cols-5 gap-12 items-center w-full max-w-4xl lg:max-w-none mx-auto text-center lg:text-left min-w-0">
                     {/* Left content */}
-                    <div className="lg:col-span-3 flex flex-col items-center lg:items-start w-full mx-auto">
+                    <div className="lg:col-span-3 flex flex-col items-center lg:items-start w-full mx-auto min-w-0">
                         {/* Subtitle pill */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
-                            className="inline-flex items-center justify-center w-max max-w-full flex-wrap sm:flex-nowrap gap-2 px-4 sm:px-6 py-2.5 rounded-2xl sm:rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8 overflow-hidden mx-auto lg:mx-0"
+                            className="inline-flex items-center justify-center w-full sm:w-max flex-wrap gap-2 px-4 sm:px-6 py-2.5 rounded-2xl sm:rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8 overflow-hidden mx-auto lg:mx-0"
                         >
                             <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse flex-shrink-0" />
-                            <span className="text-xs sm:text-sm md:text-base leading-snug truncate sm:whitespace-normal text-center">{hero.subtitle}</span>
+                            <span className="text-xs sm:text-sm md:text-base leading-snug whitespace-normal text-center">{hero.subtitle}</span>
                         </motion.div>
 
                         <motion.h1
@@ -125,7 +125,7 @@ export default function Hero() {
                             <Magnetic>
                                 <a
                                     href="#projects"
-                                    className="inline-flex items-center justify-center w-full sm:w-auto gap-2 px-8 py-3.5 rounded-lg bg-gradient-to-r from-[#00d4ff] to-[#a855f7] text-white font-semibold hover:shadow-[0_0_40px_rgba(0,212,255,0.3)] transition-all duration-300 hover:-translate-y-0.5"
+                                    className="inline-flex items-center justify-center w-full sm:w-auto gap-2 px-6 sm:px-8 py-3.5 rounded-lg bg-gradient-to-r from-[#00d4ff] to-[#a855f7] text-white font-semibold hover:shadow-[0_0_40px_rgba(0,212,255,0.3)] transition-all duration-300 hover:-translate-y-0.5 text-center leading-tight whitespace-normal"
                                 >
                                     {ui.hero.viewProjects}
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -137,7 +137,7 @@ export default function Hero() {
                                 <Magnetic>
                                     <a
                                         href="#skills"
-                                        className="inline-flex flex-1 justify-center items-center gap-2 px-6 py-3.5 rounded-lg border border-white/10 text-white font-semibold hover:bg-white/5 hover:border-white/20 transition-all duration-300"
+                                        className="inline-flex flex-1 justify-center items-center gap-2 px-4 sm:px-6 py-3.5 rounded-lg border border-white/10 text-white font-semibold hover:bg-white/5 hover:border-white/20 transition-all duration-300 text-center leading-tight whitespace-normal"
                                     >
                                         {ui.hero.exploreSkills}
                                     </a>
@@ -145,7 +145,7 @@ export default function Hero() {
                                 <Magnetic>
                                     <a
                                         href="#contact"
-                                        className="inline-flex flex-1 justify-center items-center gap-2 px-6 py-3.5 rounded-lg border border-white/10 text-gray-400 font-semibold hover:bg-white/5 hover:border-white/20 hover:text-white transition-all duration-300"
+                                        className="inline-flex flex-1 justify-center items-center gap-2 px-4 sm:px-6 py-3.5 rounded-lg border border-white/10 text-gray-400 font-semibold hover:bg-white/5 hover:border-white/20 hover:text-white transition-all duration-300 text-center leading-tight whitespace-normal"
                                     >
                                         {ui.hero.contactMe}
                                     </a>
@@ -179,7 +179,7 @@ export default function Hero() {
                         initial={{ opacity: 0, x: 40 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.6 }}
-                        className="lg:col-span-2 flex flex-col items-center lg:items-stretch w-full mx-auto"
+                        className="lg:col-span-2 flex flex-col items-center lg:items-stretch w-full mx-auto min-w-0 mt-8 lg:mt-0"
                     >
                         {/* Stats cards */}
                         <div className="grid grid-cols-3 gap-3 mb-8 w-full max-w-sm lg:max-w-none mx-auto lg:mx-0">
