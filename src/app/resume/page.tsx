@@ -60,11 +60,6 @@ export default function ResumePDF() {
                             <p>{siteConfig.email}</p>
                             <p>{siteConfig.phone}</p>
                             <p>{siteConfig.location}</p>
-                            <div className="flex justify-end gap-3 mt-2 text-[#00d4ff]">
-                                {siteConfig.social.map((link: any) => (
-                                    <a key={link.label} href={link.url} className="hover:underline">{link.label}</a>
-                                ))}
-                            </div>
                         </div>
                     </div>
 
@@ -95,8 +90,8 @@ export default function ResumePDF() {
                                             </div>
                                             <div className="text-neutral-500 font-medium mb-3">{exp.company}</div>
                                             <ul className="text-sm text-neutral-600 space-y-1.5 list-disc pl-4 marker:text-[#a855f7]">
-                                                {exp.highlights.slice(0, 3).map((highlight: string, j: number) => (
-                                                    <li key={j}>{highlight}</li>
+                                                {exp.achievements.slice(0, 3).map((achievement: string, j: number) => (
+                                                    <li key={j}>{achievement}</li>
                                                 ))}
                                             </ul>
                                         </div>
@@ -141,7 +136,7 @@ export default function ResumePDF() {
                                         <div key={category.category}>
                                             <h4 className="text-xs font-bold text-neutral-800 mb-2">{category.category}</h4>
                                             <div className="flex flex-wrap gap-1.5">
-                                                {category.items.slice(0, 5).map((skill: string) => (
+                                                {category.skills.slice(0, 5).map((skill: string) => (
                                                     <span key={skill} className="text-[10px] font-medium text-neutral-700 bg-neutral-100 px-2 py-0.5 rounded-md border border-neutral-200">
                                                         {skill}
                                                     </span>
@@ -161,8 +156,8 @@ export default function ResumePDF() {
                                     {educationData.map((edu: any, i: number) => (
                                         <div key={i}>
                                             <h4 className="font-bold text-neutral-800 text-sm mb-1">{edu.degree}</h4>
-                                            <p className="text-xs text-[#a855f7] font-medium mb-1">{edu.school}</p>
-                                            <p className="text-xs text-neutral-500">{edu.year}</p>
+                                            <p className="text-xs text-[#a855f7] font-medium mb-1">{edu.institution}</p>
+                                            <p className="text-xs text-neutral-500">{edu.period}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -175,8 +170,8 @@ export default function ResumePDF() {
                                 </h3>
                                 <div className="space-y-2">
                                     {languagesData?.map((lang: any) => (
-                                        <div key={lang.language} className="flex justify-between items-center text-sm">
-                                            <span className="font-semibold text-neutral-700">{lang.language}</span>
+                                        <div key={lang.name} className="flex justify-between items-center text-sm">
+                                            <span className="font-semibold text-neutral-700">{lang.name}</span>
                                             <span className="text-[10px] font-medium text-white bg-gradient-to-r from-[#00d4ff] to-[#a855f7] px-2 py-0.5 rounded shadow-sm">{lang.level}</span>
                                         </div>
                                     ))}
