@@ -190,14 +190,14 @@ export default function ResumePDF() {
             </div>
             
             {/* Global Print Styles to enforce A4 size and hide everything else */}
-            <style jsx global>{`
+            <style>{`
                 @media print {
                     @page { 
                         size: A4; 
                         margin: 0mm; /* Let the component handle margins */
                     }
                     body {
-                        background: white;
+                        background: transparent;
                         -webkit-print-color-adjust: exact !important;
                         print-color-adjust: exact !important;
                     }
