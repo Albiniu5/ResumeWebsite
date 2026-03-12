@@ -41,7 +41,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased">
+      <body className="antialiased overflow-x-hidden w-full">
         <SmoothScroll>
           <Providers>{children}</Providers>
         </SmoothScroll>

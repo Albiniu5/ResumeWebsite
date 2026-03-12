@@ -81,28 +81,27 @@ export default function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
-                            className="inline-flex items-center w-max max-w-full flex-wrap sm:flex-nowrap gap-2 px-5 sm:px-6 py-2.5 rounded-2xl sm:rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8"
+                            className="inline-flex items-center w-max max-w-full flex-wrap sm:flex-nowrap gap-2 px-4 sm:px-6 py-2.5 rounded-2xl sm:rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8 overflow-hidden"
                         >
                             <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse flex-shrink-0" />
-                            <span className="text-sm md:text-base leading-snug">{hero.subtitle}</span>
+                            <span className="text-xs sm:text-sm md:text-base leading-snug truncate sm:whitespace-normal">{hero.subtitle}</span>
                         </motion.div>
 
                         <motion.h1
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, delay: 0.4 }}
-                            className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6"
+                            className="text-[11vw] leading-[1.1] sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 max-w-[100vw] overflow-wrap-anywhere break-words hyphens-auto"
                         >
-                            <span className="text-white">{name.split(" ")[0]}</span>
-                            <br />
-                            <span className="gradient-text">{name.split(" ")[1]}</span>
+                            <span className="text-white block truncate">{name.split(" ")[0]}</span>
+                            <span className="gradient-text block truncate">{name.split(" ")[1]}</span>
                         </motion.h1>
 
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.6 }}
-                            className="text-lg text-gray-400 max-w-xl mb-4 font-medium"
+                            className="text-base sm:text-lg text-gray-400 max-w-full lg:max-w-xl mb-4 font-medium break-words"
                         >
                             {title}
                         </motion.p>
@@ -111,7 +110,7 @@ export default function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.7 }}
-                            className="text-base text-gray-500 max-w-lg mb-10 leading-relaxed"
+                            className="text-sm sm:text-base text-gray-500 max-w-full lg:max-w-lg mb-10 leading-relaxed break-words"
                         >
                             {hero.description}
                         </motion.p>
@@ -121,12 +120,12 @@ export default function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.8 }}
-                            className="flex flex-wrap gap-4 mb-10"
+                            className="flex flex-wrap gap-4 mb-10 max-w-full"
                         >
                             <Magnetic>
                                 <a
                                     href="#projects"
-                                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg bg-gradient-to-r from-[#00d4ff] to-[#a855f7] text-white font-semibold hover:shadow-[0_0_40px_rgba(0,212,255,0.3)] transition-all duration-300 hover:-translate-y-0.5"
+                                    className="inline-flex items-center justify-center w-full sm:w-auto gap-2 px-8 py-3.5 rounded-lg bg-gradient-to-r from-[#00d4ff] to-[#a855f7] text-white font-semibold hover:shadow-[0_0_40px_rgba(0,212,255,0.3)] transition-all duration-300 hover:-translate-y-0.5"
                                 >
                                     {ui.hero.viewProjects}
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -134,22 +133,24 @@ export default function Hero() {
                                     </svg>
                                 </a>
                             </Magnetic>
-                            <Magnetic>
-                                <a
-                                    href="#skills"
-                                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg border border-white/10 text-white font-semibold hover:bg-white/5 hover:border-white/20 transition-all duration-300"
-                                >
-                                    {ui.hero.exploreSkills}
-                                </a>
-                            </Magnetic>
-                            <Magnetic>
-                                <a
-                                    href="#contact"
-                                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg border border-white/10 text-gray-400 font-semibold hover:bg-white/5 hover:border-white/20 hover:text-white transition-all duration-300"
-                                >
-                                    {ui.hero.contactMe}
-                                </a>
-                            </Magnetic>
+                            <div className="flex w-full sm:w-auto gap-4">
+                                <Magnetic>
+                                    <a
+                                        href="#skills"
+                                        className="inline-flex flex-1 justify-center items-center gap-2 px-6 py-3.5 rounded-lg border border-white/10 text-white font-semibold hover:bg-white/5 hover:border-white/20 transition-all duration-300"
+                                    >
+                                        {ui.hero.exploreSkills}
+                                    </a>
+                                </Magnetic>
+                                <Magnetic>
+                                    <a
+                                        href="#contact"
+                                        className="inline-flex flex-1 justify-center items-center gap-2 px-6 py-3.5 rounded-lg border border-white/10 text-gray-400 font-semibold hover:bg-white/5 hover:border-white/20 hover:text-white transition-all duration-300"
+                                    >
+                                        {ui.hero.contactMe}
+                                    </a>
+                                </Magnetic>
+                            </div>
                         </motion.div>
 
                         {/* Floating Skill Badges */}
@@ -157,7 +158,7 @@ export default function Hero() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.8, delay: 1 }}
-                            className="flex flex-wrap gap-3 mt-4"
+                            className="flex flex-wrap gap-2 sm:gap-3 mt-4 max-w-[100vw] sm:max-w-full pr-4"
                         >
                             {floatingSkills.map((skill, i) => (
                                 <motion.span
