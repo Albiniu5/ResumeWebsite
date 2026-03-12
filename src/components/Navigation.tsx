@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLang } from "@/context/LanguageContext";
 import { useResumeData } from "@/hooks/useResumeData";
+import Link from "next/link";
 
 const navItems = [
     { id: "hero", en: "Home", nl: "Home" },
@@ -81,6 +82,13 @@ export default function Navigation() {
                         <span className={`font-medium transition-colors ${lang === "nl" ? "text-[#00d4ff]" : "text-gray-500"}`}>NL</span>
                     </button>
 
+                    <Link
+                        href="/resume"
+                        className="px-4 py-1.5 rounded-lg border border-white/10 text-white text-sm font-semibold hover:bg-white/5 transition-colors"
+                    >
+                        {lang === "nl" ? "CV Downloaden" : "Download CV"}
+                    </Link>
+
                     <a
                         href="#contact"
                         className="px-5 py-2 rounded-lg bg-gradient-to-r from-[#00d4ff] to-[#a855f7] text-white text-sm font-semibold hover:shadow-[0_0_30px_rgba(0,212,255,0.3)] transition-shadow"
@@ -118,6 +126,13 @@ export default function Navigation() {
                                     {lang === "nl" ? item.nl : item.en}
                                 </a>
                             ))}
+                            <Link 
+                                href="/resume"
+                                onClick={() => setMobileOpen(false)}
+                                className="block py-2 text-sm font-medium text-white hover:text-[#00d4ff] transition-colors"
+                            >
+                                {lang === "nl" ? "📄 CV Downloaden" : "📄 Download CV"}
+                            </Link>
                             <button onClick={toggle} className="block py-2 text-sm font-medium text-[#a855f7]">
                                 {lang === "en" ? "🇳🇱 Nederlands" : "🇬🇧 English"}
                             </button>
