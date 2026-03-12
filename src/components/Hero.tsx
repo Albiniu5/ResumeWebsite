@@ -72,36 +72,36 @@ export default function Hero() {
             <GridBackground />
             <NetworkCanvas />
 
-            <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 w-full">
-                <div className="grid lg:grid-cols-5 gap-12 items-center">
+            <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 w-full flex flex-col items-center justify-center">
+                <div className="grid lg:grid-cols-5 gap-12 items-center w-full max-w-4xl lg:max-w-none mx-auto text-center lg:text-left">
                     {/* Left content */}
-                    <div className="lg:col-span-3 flex flex-col items-center lg:items-start text-center lg:text-left">
+                    <div className="lg:col-span-3 flex flex-col items-center lg:items-start w-full mx-auto">
                         {/* Subtitle pill */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
-                            className="inline-flex items-center w-max max-w-full flex-wrap sm:flex-nowrap gap-2 px-4 sm:px-6 py-2.5 rounded-2xl sm:rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8 overflow-hidden"
+                            className="inline-flex items-center justify-center w-max max-w-full flex-wrap sm:flex-nowrap gap-2 px-4 sm:px-6 py-2.5 rounded-2xl sm:rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8 overflow-hidden mx-auto lg:mx-0"
                         >
                             <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse flex-shrink-0" />
-                            <span className="text-xs sm:text-sm md:text-base leading-snug truncate sm:whitespace-normal">{hero.subtitle}</span>
+                            <span className="text-xs sm:text-sm md:text-base leading-snug truncate sm:whitespace-normal text-center">{hero.subtitle}</span>
                         </motion.div>
 
                         <motion.h1
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, delay: 0.4 }}
-                            className="text-[11vw] leading-[1.1] sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 max-w-[100vw] overflow-wrap-anywhere break-words hyphens-auto"
+                            className="text-[11vw] leading-[1.1] sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 max-w-[100vw] overflow-wrap-anywhere break-words hyphens-auto text-center lg:text-left mx-auto lg:mx-0"
                         >
-                            <span className="text-white block truncate">{name.split(" ")[0]}</span>
-                            <span className="gradient-text block truncate">{name.split(" ")[1]}</span>
+                            <span className="text-white block truncate w-full text-center lg:text-left">{name.split(" ")[0]}</span>
+                            <span className="gradient-text block truncate w-full text-center lg:text-left">{name.split(" ")[1]}</span>
                         </motion.h1>
 
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.6 }}
-                            className="text-base sm:text-lg text-gray-400 max-w-full lg:max-w-xl mb-4 font-medium break-words"
+                            className="text-base sm:text-lg text-gray-400 max-w-full lg:max-w-xl mb-4 font-medium break-words text-center lg:text-left mx-auto lg:mx-0"
                         >
                             {title}
                         </motion.p>
@@ -110,7 +110,7 @@ export default function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.7 }}
-                            className="text-sm sm:text-base text-gray-500 max-w-full lg:max-w-lg mb-10 leading-relaxed break-words"
+                            className="text-sm sm:text-base text-gray-500 max-w-full lg:max-w-lg mb-10 leading-relaxed break-words text-center lg:text-left mx-auto lg:mx-0"
                         >
                             {hero.description}
                         </motion.p>
@@ -179,10 +179,10 @@ export default function Hero() {
                         initial={{ opacity: 0, x: 40 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.6 }}
-                        className="lg:col-span-2"
+                        className="lg:col-span-2 flex flex-col items-center lg:items-stretch w-full mx-auto"
                     >
                         {/* Stats cards */}
-                        <div className="grid grid-cols-3 gap-3 mb-8">
+                        <div className="grid grid-cols-3 gap-3 mb-8 w-full max-w-sm lg:max-w-none mx-auto lg:mx-0">
                             {hero.stats.map((stat, i) => (
                                 <motion.div
                                     key={stat.label}
