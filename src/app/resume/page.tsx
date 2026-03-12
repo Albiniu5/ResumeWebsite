@@ -1,5 +1,6 @@
 import { useResumeData } from "@/hooks/useResumeData";
 import { useRef } from "react";
+// @ts-ignore
 import { useReactToPrint } from "react-to-print";
 import { FiDownload, FiArrowLeft } from "react-icons/fi";
 import Link from "next/link";
