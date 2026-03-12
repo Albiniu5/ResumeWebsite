@@ -75,7 +75,7 @@ export default function Hero() {
             <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 w-full">
                 <div className="grid lg:grid-cols-5 gap-12 items-center">
                     {/* Left content */}
-                    <div className="lg:col-span-3">
+                    <div className="lg:col-span-3 flex flex-col items-center lg:items-start text-center lg:text-left">
                         {/* Subtitle pill */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -120,7 +120,7 @@ export default function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.8 }}
-                            className="flex flex-wrap gap-4 mb-10 max-w-full"
+                            className="flex flex-wrap justify-center lg:justify-start gap-4 mb-10 max-w-full w-full"
                         >
                             <Magnetic>
                                 <a
@@ -158,7 +158,7 @@ export default function Hero() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.8, delay: 1 }}
-                            className="flex flex-wrap gap-2 sm:gap-3 mt-4 max-w-[100vw] sm:max-w-full pr-4"
+                            className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3 mt-4 max-w-[100vw] sm:max-w-full px-4 lg:px-0"
                         >
                             {floatingSkills.map((skill, i) => (
                                 <motion.span
