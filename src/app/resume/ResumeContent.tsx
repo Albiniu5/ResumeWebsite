@@ -14,7 +14,6 @@ export default function ResumeContent() {
         aboutData,
         skillsData,
         experienceData,
-        projectsData,
         educationData,
         languagesData,
         ui
@@ -29,8 +28,9 @@ export default function ResumeContent() {
     });
 
     return (
-        <div className="min-h-screen bg-neutral-900 py-12 px-4 selection:bg-[#00d4ff]/30 selection:text-white">
-            <div className="max-w-4xl mx-auto mb-8 flex items-center justify-between">
+        <div className="min-h-screen bg-neutral-900 py-12 px-4 selection:bg-[#00d4ff]/30 selection:text-white print:bg-white print:p-0 print:m-0">
+            {/* Toolbar — hidden on print */}
+            <div className="max-w-4xl mx-auto mb-8 flex items-center justify-between print:hidden">
                 <Link
                     href="/"
                     className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
@@ -45,105 +45,88 @@ export default function ResumeContent() {
                 </button>
             </div>
 
-            {/* A4 Print Container */}
-            <div className="max-w-[210mm] mx-auto bg-white rounded-xl shadow-2xl overflow-hidden print:shadow-none print:w-[210mm] print:h-[297mm]">
+            {/* ───── A4 Page ───── */}
+            <div className="max-w-[210mm] mx-auto bg-white rounded-xl shadow-2xl overflow-hidden print:shadow-none print:rounded-none">
                 <div
                     ref={componentRef}
-                    className="w-[210mm] min-h-[297mm] bg-white text-neutral-900 p-12 pr-14 box-border font-sans"
-                    style={{ WebkitPrintColorAdjust: 'exact', printColorAdjust: 'exact' }}
+                    className="w-[210mm] min-h-[297mm] bg-white text-neutral-800 px-14 py-10 box-border"
+                    style={{ fontFamily: "'Inter', 'Segoe UI', sans-serif", WebkitPrintColorAdjust: 'exact', printColorAdjust: 'exact' }}
                 >
-                    {/* Header */}
-                    <div className="border-b-2 border-neutral-200 pb-8 mb-8 flex justify-between items-end">
-                        <div className="flex-1">
-                            <h1 className="text-5xl font-extrabold text-[#0f172a] mb-2 tracking-tight">
-                                {siteConfig.name}
-                            </h1>
-                            <h2 className="text-xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-[#a855f7]">
-                                {siteConfig.hero.subtitle}
-                            </h2>
+                    {/* ── Header ── */}
+                    <header className="mb-6">
+                        <h1 className="text-4xl font-extrabold text-[#0f172a] tracking-tight leading-none">
+                            {siteConfig.name}
+                        </h1>
+                        <p className="text-sm font-semibold mt-1.5" style={{ color: '#0891b2' }}>
+                            {siteConfig.hero.subtitle}
+                        </p>
+                        <div className="flex items-center gap-4 mt-3 text-xs text-neutral-500">
+                            <span>{siteConfig.email}</span>
+                            <span className="text-neutral-300">|</span>
+                            <span>{siteConfig.phone}</span>
+                            <span className="text-neutral-300">|</span>
+                            <span>{siteConfig.location}</span>
                         </div>
-                        <div className="text-right text-sm text-neutral-500 space-y-1">
-                            <p>{siteConfig.email}</p>
-                            <p>{siteConfig.phone}</p>
-                            <p>{siteConfig.location}</p>
-                        </div>
-                    </div>
+                        <div className="mt-3 h-[2px] w-full bg-gradient-to-r from-[#00d4ff] via-[#a855f7] to-transparent rounded-full" />
+                    </header>
 
-                    {/* Summary */}
-                    <div className="mb-8">
-                        <p className="text-neutral-600 leading-relaxed text-sm">
+                    {/* ── Summary ── */}
+                    <section className="mb-5">
+                        <p className="text-[11.5px] leading-relaxed text-neutral-600">
                             {aboutData.paragraphs[0]}
                         </p>
-                    </div>
+                    </section>
 
-                    <div className="grid grid-cols-3 gap-12">
-                        {/* Main Content (Left: 2 Cols) */}
-                        <div className="col-span-2 space-y-8">
+                    {/* ── Two-column body ── */}
+                    <div className="grid grid-cols-[1fr_260px] gap-10">
+
+                        {/* ═══ LEFT COLUMN ═══ */}
+                        <div className="space-y-5">
 
                             {/* Experience */}
                             <section>
-                                <h3 className="text-xl font-bold text-[#0f172a] mb-5 uppercase tracking-wider flex items-center gap-3">
-                                    <span className="w-6 h-[2px] bg-gradient-to-r from-[#00d4ff] to-[#a855f7]"></span>
+                                <h3 className="text-[13px] font-bold text-[#0f172a] uppercase tracking-[0.15em] mb-3 flex items-center gap-2">
+                                    <span className="w-5 h-[2px] bg-gradient-to-r from-[#00d4ff] to-[#a855f7] rounded-full" />
                                     {ui.nav.experience}
                                 </h3>
-                                <div className="space-y-6">
+                                <div className="space-y-4">
                                     {experienceData.map((exp: any, i: number) => (
-                                        <div key={i} className="relative pl-4 border-l-2 border-neutral-100">
-                                            <div className="absolute w-3 h-3 bg-white border-2 border-[#a855f7] rounded-full -left-[7.5px] top-1.5" />
-                                            <div className="flex justify-between items-baseline mb-1">
-                                                <h4 className="font-bold text-neutral-800 text-lg">{exp.role}</h4>
-                                                <span className="text-xs font-semibold text-[#00d4ff] bg-[#00d4ff]/10 px-2.5 py-1 rounded-full">{exp.period}</span>
+                                        <div key={i} className="relative pl-3.5 border-l border-neutral-200">
+                                            <div className="absolute w-2 h-2 rounded-full -left-[4.5px] top-[5px]" style={{ background: 'linear-gradient(135deg, #00d4ff, #a855f7)' }} />
+                                            <div className="flex justify-between items-baseline">
+                                                <h4 className="text-[12.5px] font-bold text-neutral-800">{exp.role}</h4>
+                                                <span className="text-[10px] font-medium text-neutral-400 whitespace-nowrap ml-2">{exp.period}</span>
                                             </div>
-                                            <div className="text-neutral-500 font-medium mb-3">{exp.company}</div>
-                                            <ul className="text-sm text-neutral-600 space-y-1.5 list-disc pl-4 marker:text-[#a855f7]">
-                                                {exp.achievements.slice(0, 3).map((achievement: string, j: number) => (
-                                                    <li key={j}>{achievement}</li>
+                                            <p className="text-[10.5px] font-medium mb-1.5" style={{ color: '#0891b2' }}>{exp.company}</p>
+                                            <ul className="text-[10.5px] text-neutral-600 space-y-0.5 list-disc pl-3.5">
+                                                {exp.achievements.slice(0, 3).map((a: string, j: number) => (
+                                                    <li key={j} className="leading-snug">{a}</li>
                                                 ))}
                                             </ul>
                                         </div>
                                     ))}
                                 </div>
                             </section>
-
-                            {/* Projects Showcase */}
-                            <section>
-                                <h3 className="text-xl font-bold text-[#0f172a] mb-5 uppercase tracking-wider flex items-center gap-3">
-                                    <span className="w-6 h-[2px] bg-gradient-to-r from-[#00d4ff] to-[#a855f7]"></span>
-                                    {ui.nav.projects}
-                                </h3>
-                                <div className="grid grid-cols-2 gap-4">
-                                    {projectsData.slice(0, 4).map((project: any, i: number) => (
-                                        <div key={i} className="bg-neutral-50 p-4 rounded-lg border border-neutral-100">
-                                            <h4 className="font-bold text-neutral-800 mb-1">{project.title}</h4>
-                                            <p className="text-[11px] leading-snug text-neutral-500 mb-2 line-clamp-2">{project.description}</p>
-                                            <div className="flex flex-wrap gap-1.5">
-                                                {project.technologies.slice(0, 3).map((t: string, j: number) => (
-                                                    <span key={j} className="text-[9px] font-medium text-neutral-500 bg-neutral-200/50 px-2 py-0.5 rounded-md">
-                                                        {t}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </section>
                         </div>
 
-                        {/* Sidebar (Right: 1 Col) */}
-                        <div className="col-span-1 space-y-8">
+                        {/* ═══ RIGHT COLUMN ═══ */}
+                        <div className="space-y-5">
 
                             {/* Skills */}
                             <section>
-                                <h3 className="text-xl font-bold text-[#0f172a] mb-5 uppercase tracking-wider">
+                                <h3 className="text-[13px] font-bold text-[#0f172a] uppercase tracking-[0.15em] mb-3">
                                     {ui.nav.skills}
                                 </h3>
-                                <div className="space-y-4 text-sm">
+                                <div className="space-y-3">
                                     {skillsData.slice(0, 4).map((category: any) => (
                                         <div key={category.category}>
-                                            <h4 className="text-xs font-bold text-neutral-800 mb-2">{category.category}</h4>
-                                            <div className="flex flex-wrap gap-1.5">
-                                                {category.skills.slice(0, 5).map((skill: string) => (
-                                                    <span key={skill} className="text-[10px] font-medium text-neutral-700 bg-neutral-100 px-2 py-0.5 rounded-md border border-neutral-200">
+                                            <h4 className="text-[10px] font-bold text-neutral-700 mb-1.5 uppercase tracking-wide">{category.category}</h4>
+                                            <div className="flex flex-wrap gap-1">
+                                                {category.skills.slice(0, 6).map((skill: string) => (
+                                                    <span
+                                                        key={skill}
+                                                        className="text-[9px] font-medium text-neutral-600 bg-neutral-100 px-1.5 py-0.5 rounded border border-neutral-200"
+                                                    >
                                                         {skill}
                                                     </span>
                                                 ))}
@@ -155,15 +138,15 @@ export default function ResumeContent() {
 
                             {/* Education */}
                             <section>
-                                <h3 className="text-xl font-bold text-[#0f172a] mb-5 uppercase tracking-wider">
+                                <h3 className="text-[13px] font-bold text-[#0f172a] uppercase tracking-[0.15em] mb-3">
                                     {ui.nav.education}
                                 </h3>
-                                <div className="space-y-4">
+                                <div className="space-y-2.5">
                                     {educationData.map((edu: any, i: number) => (
                                         <div key={i}>
-                                            <h4 className="font-bold text-neutral-800 text-sm mb-1">{edu.degree}</h4>
-                                            <p className="text-xs text-[#a855f7] font-medium mb-1">{edu.institution}</p>
-                                            <p className="text-xs text-neutral-500">{edu.period}</p>
+                                            <h4 className="text-[11px] font-bold text-neutral-800 leading-tight">{edu.degree}</h4>
+                                            <p className="text-[10px] font-medium" style={{ color: '#0891b2' }}>{edu.institution}</p>
+                                            <p className="text-[9.5px] text-neutral-400">{edu.period}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -171,35 +154,34 @@ export default function ResumeContent() {
 
                             {/* Languages */}
                             <section>
-                                <h3 className="text-xl font-bold text-[#0f172a] mb-5 uppercase tracking-wider">
+                                <h3 className="text-[13px] font-bold text-[#0f172a] uppercase tracking-[0.15em] mb-3">
                                     Languages
                                 </h3>
-                                <div className="space-y-2">
+                                <div className="space-y-1.5">
                                     {languagesData.map((lang: any) => (
-                                        <div key={lang.name} className="flex justify-between items-center text-sm">
-                                            <span className="font-semibold text-neutral-700">{lang.name}</span>
-                                            <span className="text-[10px] font-medium text-white bg-gradient-to-r from-[#00d4ff] to-[#a855f7] px-2 py-0.5 rounded shadow-sm">{lang.level}</span>
+                                        <div key={lang.name} className="flex justify-between items-center">
+                                            <span className="text-[11px] font-semibold text-neutral-700">{lang.name}</span>
+                                            <span
+                                                className="text-[9px] font-semibold text-white px-2 py-0.5 rounded-full"
+                                                style={{ background: 'linear-gradient(135deg, #00d4ff, #a855f7)' }}
+                                            >
+                                                {lang.level}
+                                            </span>
                                         </div>
                                     ))}
                                 </div>
                             </section>
-
                         </div>
                     </div>
                 </div>
             </div>
 
+            {/* Print overrides */}
             <style>{`
                 @media print {
-                    @page {
-                        size: A4;
-                        margin: 0mm;
-                    }
-                    body {
-                        background: transparent;
-                        -webkit-print-color-adjust: exact !important;
-                        print-color-adjust: exact !important;
-                    }
+                    @page { size: A4; margin: 0; }
+                    body { background: white !important; }
+                    .print\\:hidden { display: none !important; }
                 }
             `}</style>
         </div>
