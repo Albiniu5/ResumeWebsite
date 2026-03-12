@@ -9,24 +9,33 @@ import { FiDownload, FiArrowLeft } from "react-icons/fi";
 import Link from "next/link";
 
 export default function ResumePDF() {
-    const { 
-        siteConfig, 
-        aboutData, 
-        skillsData, 
-        experienceData, 
-        projectsData, 
-        educationData, 
-        languagesData, 
-        ui 
-    } = useResumeData();
+    const data = useResumeData();
+    const siteConfig = data?.siteConfig;
+    const aboutData = data?.aboutData;
+    const skillsData = data?.skillsData ?? [];
+    const experienceData = data?.experienceData ?? [];
+    const projectsData = data?.projectsData ?? [];
+    const educationData = data?.educationData ?? [];
+    const languagesData = data?.languagesData ?? [];
+    const ui = data?.ui;
+    
     const componentRef = useRef<HTMLDivElement>(null);
     
     const handlePrint = useReactToPrint({
         // @ts-ignore
         content: () => componentRef.current,
-        contentRef: componentRef, // To ensure v3 compatibility
-        documentTitle: `Resume_${siteConfig.name.replace(" ", "_")}`,
+        contentRef: componentRef,
+        documentTitle: `Resume_${siteConfig?.name?.replace(" ", "_") ?? "CV"}`,
     });
+
+    // Guard against SSR prerendering where context is unavailable
+    if (!siteConfig || !ui) {
+        return (
+            <div className="min-h-screen bg-neutral-900 flex items-center justify-center">
+                <div className="text-white text-lg">Loading resume...</div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-neutral-900 py-12 px-4 selection:bg-[#00d4ff]/30 selection:text-white">
@@ -72,7 +81,7 @@ export default function ResumePDF() {
                     {/* Summary */}
                     <div className="mb-8">
                         <p className="text-neutral-600 leading-relaxed text-sm">
-                            {aboutData.paragraphs[0]}
+                            {aboutData?.paragraphs?.[0]}
                         </p>
                     </div>
 
