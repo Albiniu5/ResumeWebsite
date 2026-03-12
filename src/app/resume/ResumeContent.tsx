@@ -77,7 +77,7 @@ export default function ResumeContent() {
                     {/* Two-column body */}
                     <div className="grid grid-cols-[1fr_220px] gap-8">
 
-                        {/* LEFT — Experience */}
+                        {/* LEFT — Experience + Education */}
                         <div>
                             <h3 className="text-[11px] font-bold text-[#0f172a] uppercase tracking-[0.15em] mb-2 flex items-center gap-2">
                                 <span className="w-4 h-[1.5px] bg-gradient-to-r from-[#00d4ff] to-[#a855f7] rounded-full" />
@@ -97,6 +97,22 @@ export default function ResumeContent() {
                                                 <li key={j} className="leading-snug">{a}</li>
                                             ))}
                                         </ul>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Education — below experience */}
+                            <h3 className="text-[11px] font-bold text-[#0f172a] uppercase tracking-[0.15em] mt-5 mb-2 flex items-center gap-2">
+                                <span className="w-4 h-[1.5px] bg-gradient-to-r from-[#00d4ff] to-[#a855f7] rounded-full" />
+                                {ui.nav.education}
+                            </h3>
+                            <div className="space-y-1.5">
+                                {educationData.map((edu: any, i: number) => (
+                                    <div key={i} className="relative pl-3 border-l border-neutral-200">
+                                        <div className="absolute w-1.5 h-1.5 rounded-full -left-[3.5px] top-[4px]" style={{ background: 'linear-gradient(135deg, #00d4ff, #a855f7)' }} />
+                                        <h4 className="text-[10px] font-bold text-neutral-800 leading-tight">{edu.degree}</h4>
+                                        <p className="text-[9px] font-medium" style={{ color: '#0891b2' }}>{edu.institution}</p>
+                                        <p className="text-[8.5px] text-neutral-400">{edu.period}</p>
                                     </div>
                                 ))}
                             </div>
@@ -126,21 +142,6 @@ export default function ResumeContent() {
                                 </div>
                             </section>
 
-                            {/* Education */}
-                            <section>
-                                <h3 className="text-[11px] font-bold text-[#0f172a] uppercase tracking-[0.15em] mb-2">
-                                    {ui.nav.education}
-                                </h3>
-                                <div className="space-y-1.5">
-                                    {educationData.map((edu: any, i: number) => (
-                                        <div key={i}>
-                                            <h4 className="text-[10px] font-bold text-neutral-800 leading-tight">{edu.degree}</h4>
-                                            <p className="text-[9px] font-medium" style={{ color: '#0891b2' }}>{edu.institution}</p>
-                                            <p className="text-[8.5px] text-neutral-400">{edu.period}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </section>
 
                             {/* Languages */}
                             <section>
