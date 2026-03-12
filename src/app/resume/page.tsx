@@ -1,3 +1,5 @@
+"use client";
+
 import { useResumeData } from "@/hooks/useResumeData";
 import { useRef } from "react";
 // @ts-ignore
@@ -20,7 +22,9 @@ export default function ResumePDF() {
     const componentRef = useRef<HTMLDivElement>(null);
     
     const handlePrint = useReactToPrint({
+        // @ts-ignore
         content: () => componentRef.current,
+        contentRef: componentRef, // To ensure v3 compatibility
         documentTitle: `Resume_${siteConfig.name.replace(" ", "_")}`,
     });
 
