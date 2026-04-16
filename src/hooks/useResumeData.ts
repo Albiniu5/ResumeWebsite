@@ -2,6 +2,7 @@
 import { useLang } from "@/context/LanguageContext";
 import * as en from "@/data/resume";
 import * as nl from "@/data/resume-nl";
+import { snakeGameLabelsEN, snakeGameLabelsNL } from "@/data/snakeGameLabels";
 
 export function useResumeData() {
     const { lang } = useLang();
@@ -17,7 +18,10 @@ export function useResumeData() {
             languagesData: nl.languagesDataNL,
             philosophyData: nl.philosophyDataNL,
             techStackData: en.techStackData, // tech names stay same
-            ui: nl.uiLabelsNL,
+            ui: {
+                ...nl.uiLabelsNL,
+                snakeGame: snakeGameLabelsNL,
+            },
         };
     }
 
@@ -31,6 +35,9 @@ export function useResumeData() {
         languagesData: en.languagesData,
         philosophyData: en.philosophyData,
         techStackData: en.techStackData,
-        ui: nl.uiLabelsEN,
+        ui: {
+            ...nl.uiLabelsEN,
+            snakeGame: snakeGameLabelsEN,
+        },
     };
 }

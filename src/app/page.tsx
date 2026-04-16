@@ -5,6 +5,7 @@ import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import NetworkDemo from "@/components/NetworkDemo";
+import SnakeGameSection from "@/components/SnakeGameSection";
 import Education from "@/components/Education";
 import TechStack from "@/components/TechStack";
 import Philosophy from "@/components/Philosophy";
@@ -23,6 +24,7 @@ export default function Home() {
         <Skills />
         <Projects />
         <NetworkDemo />
+        <SnakeGameSection />
         <Philosophy />
         <Contact />
       </main>
