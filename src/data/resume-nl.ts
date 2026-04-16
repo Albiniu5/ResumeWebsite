@@ -358,7 +358,7 @@ export const educationDataNL = [
         highlight: true,
     },
     {
-        degree: "Brandweercertificaat",
+        degree: "Brandweervrijwilliger",
         institution: "PLOT Limburg",
         location: "Genk",
         period: "Dec 2020 — Dec 2022",
@@ -390,9 +390,9 @@ export const educationDataNL = [
 export const languagesDataNL = [
     { name: "Nederlands", level: "Moedertaal" },
     { name: "Engels", level: "Vloeiend" },
-    { name: "Frans", level: "Professioneel" },
-    { name: "Russisch", level: "Professioneel" },
-    { name: "Pools", level: "Professioneel" },
+    { name: "Frans", level: "Vloeiend" },
+    { name: "Russisch", level: "Vloeiend" },
+    { name: "Pools", level: "Vloeiend" },
     { name: "Duits", level: "Conversatie" },
 ];
 
