@@ -31,7 +31,7 @@ class Node {
         const distance = Math.sqrt(dx * dx + dy * dy);
         const maxDist = 200;
 
-        if (distance < maxDist) {
+        if (distance > 0 && distance < maxDist) {
             const force = (maxDist - distance) / maxDist;
             this.x -= (dx / distance) * force * 3;
             this.y -= (dy / distance) * force * 3;
@@ -48,8 +48,20 @@ class Node {
 
 export default function NetworkCanvas() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const [enabled, setEnabled] = React.useState(false);
 
     useEffect(() => {
+        if (typeof window === "undefined") return;
+
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
+
+        setEnabled(!prefersReducedMotion && hasFinePointer);
+    }, []);
+
+    useEffect(() => {
+        if (!enabled) return;
+
         const canvas = canvasRef.current;
         if (!canvas) return;
         const ctx = canvas.getContext("2d");
@@ -87,7 +99,7 @@ export default function NetworkCanvas() {
 
         const handleMouseLeave = () => {
             mouse = { x: -1000, y: -1000 };
-        }
+        };
 
         window.addEventListener("resize", handleResize);
         window.addEventListener("mousemove", handleMouseMove);
@@ -134,7 +146,11 @@ export default function NetworkCanvas() {
             window.removeEventListener("mouseout", handleMouseLeave);
             window.cancelAnimationFrame(animationFrameId);
         };
-    }, []);
+    }, [enabled]);
+
+    if (!enabled) {
+        return null;
+    }
 
     return (
         <canvas
