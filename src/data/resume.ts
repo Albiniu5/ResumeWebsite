@@ -358,7 +358,7 @@ export const educationData = [
         highlight: true,
     },
     {
-        degree: "Firefighter Certification",
+        degree: "Volunteer Firefighter",
         institution: "PLOT Limburg",
         location: "Genk",
         period: "Dec 2020 — Dec 2022",
@@ -399,9 +399,9 @@ export const techStackData = {
 export const languagesData = [
     { name: "Dutch", level: "Native" },
     { name: "English", level: "Fluent" },
-    { name: "French", level: "Professional" },
-    { name: "Russian", level: "Professional" },
-    { name: "Polish", level: "Professional" },
+    { name: "French", level: "Fluent" },
+    { name: "Russian", level: "Fluent" },
+    { name: "Polish", level: "Fluent" },
     { name: "German", level: "Conversational" },
 ];
 
