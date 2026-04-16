@@ -172,78 +172,80 @@ export default function SnakeGameModal({ open, onClose, bestScore, onBestScoreCh
                                 </button>
                             </div>
 
-                            <div className="mb-5 grid gap-3 sm:grid-cols-3">
-                                <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
-                                    <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">{labels.nextTap}</div>
-                                    <div className={`mt-2 inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold ${nextTurn === "right" ? "bg-[#00d4ff]/12 text-[#00d4ff]" : "bg-[#a855f7]/12 text-[#d6b4ff]"}`}>
-                                        <span className="text-base">{nextTurn === "right" ? "↱" : "↰"}</span>
-                                        {nextTurn === "right" ? labels.right : labels.left}
+                            <div className="flex flex-col">
+                                <div className="order-2 mb-5 grid gap-3 sm:order-1 sm:grid-cols-3">
+                                    <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
+                                        <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">{labels.nextTap}</div>
+                                        <div className={`mt-2 inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold ${nextTurn === "right" ? "bg-[#00d4ff]/12 text-[#00d4ff]" : "bg-[#a855f7]/12 text-[#d6b4ff]"}`}>
+                                            <span className="text-base">{nextTurn === "right" ? "↱" : "↰"}</span>
+                                            {nextTurn === "right" ? labels.right : labels.left}
+                                        </div>
+                                    </div>
+
+                                    <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
+                                        <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">{labels.score}</div>
+                                        <motion.div
+                                            key={score}
+                                            initial={{ opacity: 0.5, y: 4 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            className="mt-2 text-2xl font-bold text-white"
+                                        >
+                                            {score}
+                                        </motion.div>
+                                    </div>
+
+                                    <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
+                                        <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">{labels.bestScore}</div>
+                                        <div className="mt-2 text-2xl font-bold text-white">{liveBestScore}</div>
                                     </div>
                                 </div>
 
-                                <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
-                                    <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">{labels.score}</div>
-                                    <motion.div
-                                        key={score}
-                                        initial={{ opacity: 0.5, y: 4 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        className="mt-2 text-2xl font-bold text-white"
-                                    >
-                                        {score}
-                                    </motion.div>
-                                </div>
+                                <div className="order-1 relative mx-auto w-full max-w-[460px] sm:order-2">
+                                    <SnakeGameBoard
+                                        boardSize={boardSize}
+                                        snake={snake}
+                                        food={food}
+                                        direction={direction}
+                                        onInteract={queueTurn}
+                                        className="aspect-square"
+                                    />
 
-                                <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
-                                    <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">{labels.bestScore}</div>
-                                    <div className="mt-2 text-2xl font-bold text-white">{liveBestScore}</div>
-                                </div>
-                            </div>
-
-                            <div className="relative mx-auto w-full max-w-[460px]">
-                                <SnakeGameBoard
-                                    boardSize={boardSize}
-                                    snake={snake}
-                                    food={food}
-                                    direction={direction}
-                                    onInteract={queueTurn}
-                                    className="aspect-square"
-                                />
-
-                                <AnimatePresence>
-                                    {status !== "playing" && (
-                                        <motion.div
-                                            className="absolute inset-0 flex items-center justify-center rounded-[1.5rem] bg-[#06080d]/78 p-6 backdrop-blur-sm"
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                        >
-                                            <div className="max-w-sm text-center">
-                                                <div className="mb-3 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#00d4ff]">
-                                                    {status === "idle" ? labels.intro : gameOverTitle}
+                                    <AnimatePresence>
+                                        {status !== "playing" && (
+                                            <motion.div
+                                                className="absolute inset-0 flex items-center justify-center rounded-[1.5rem] bg-[#06080d]/78 p-6 backdrop-blur-sm"
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                exit={{ opacity: 0 }}
+                                            >
+                                                <div className="max-w-sm text-center">
+                                                    <div className="mb-3 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#00d4ff]">
+                                                        {status === "idle" ? labels.intro : gameOverTitle}
+                                                    </div>
+                                                    <p className="mb-6 text-sm leading-relaxed text-gray-300">
+                                                        {status === "idle" ? labels.idleHint : `${labels.gameOverSummary} ${labels.score}: ${score}.`}
+                                                    </p>
+                                                    <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+                                                        <button
+                                                            type="button"
+                                                            onClick={status === "idle" ? startGame : restartGame}
+                                                            className="w-full rounded-xl bg-gradient-to-r from-[#00d4ff] to-[#a855f7] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(0,212,255,0.18)] transition-all hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(0,212,255,0.24)] focus:outline-none focus:ring-2 focus:ring-[#00d4ff]/40 sm:w-auto"
+                                                        >
+                                                            {status === "idle" ? labels.play : labels.retry}
+                                                        </button>
+                                                        <button
+                                                            type="button"
+                                                            onClick={onClose}
+                                                            className="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 sm:w-auto"
+                                                        >
+                                                            {labels.close}
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                                <p className="mb-6 text-sm leading-relaxed text-gray-300">
-                                                    {status === "idle" ? labels.idleHint : `${labels.gameOverSummary} ${labels.score}: ${score}.`}
-                                                </p>
-                                                <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-                                                    <button
-                                                        type="button"
-                                                        onClick={status === "idle" ? startGame : restartGame}
-                                                        className="w-full rounded-xl bg-gradient-to-r from-[#00d4ff] to-[#a855f7] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(0,212,255,0.18)] transition-all hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(0,212,255,0.24)] focus:outline-none focus:ring-2 focus:ring-[#00d4ff]/40 sm:w-auto"
-                                                    >
-                                                        {status === "idle" ? labels.play : labels.retry}
-                                                    </button>
-                                                    <button
-                                                        type="button"
-                                                        onClick={onClose}
-                                                        className="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 sm:w-auto"
-                                                    >
-                                                        {labels.close}
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
                             </div>
 
                             <div className="mt-5 flex flex-wrap items-center justify-between gap-3 text-sm text-gray-500">
