@@ -5,6 +5,17 @@ import { useResumeData } from "@/hooks/useResumeData";
 
 export default function Contact() {
     const { siteConfig, ui } = useResumeData();
+    const obfuscateEmail = (email: string) => {
+        const [local, domain] = email.split("@");
+        return `${local} [at] ${domain.replace(".", " [dot] ")}`;
+    };
+    const obfuscatePhone = (phone: string) => phone.replace(/\s/g, " \u00b7 ");
+    const openEmail = () => {
+        window.location.href = `mailto:${siteConfig.email}`;
+    };
+    const openPhone = () => {
+        window.location.href = `tel:${siteConfig.phone.replace(/\s+/g, "")}`;
+    };
 
     return (
         <section id="contact" className="section-padding relative scroll-mt-24">
@@ -29,8 +40,9 @@ export default function Contact() {
                                 </div>
 
                                 <div className="space-y-4">
-                                    <a
-                                        href={`mailto:${siteConfig.email}`}
+                                    <button
+                                        type="button"
+                                        onClick={openEmail}
                                         className="flex items-center gap-4 p-4 rounded-xl bg-white/3 hover:bg-white/5 border border-transparent hover:border-white/10 transition-all group"
                                     >
                                         <div className="w-10 h-10 rounded-lg bg-[#00d4ff]/10 flex items-center justify-center text-[#00d4ff]">
@@ -41,12 +53,13 @@ export default function Contact() {
                                         </div>
                                         <div>
                                             <div className="text-xs text-gray-500">{ui.contact.email}</div>
-                                            <div className="text-sm text-white group-hover:text-[#00d4ff] transition-colors">{siteConfig.email}</div>
+                                            <div className="text-sm text-white group-hover:text-[#00d4ff] transition-colors">{obfuscateEmail(siteConfig.email)}</div>
                                         </div>
-                                    </a>
+                                    </button>
 
-                                    <a
-                                        href={`tel:${siteConfig.phone}`}
+                                    <button
+                                        type="button"
+                                        onClick={openPhone}
                                         className="flex items-center gap-4 p-4 rounded-xl bg-white/3 hover:bg-white/5 border border-transparent hover:border-white/10 transition-all group"
                                     >
                                         <div className="w-10 h-10 rounded-lg bg-[#a855f7]/10 flex items-center justify-center text-[#a855f7]">
@@ -56,9 +69,9 @@ export default function Contact() {
                                         </div>
                                         <div>
                                             <div className="text-xs text-gray-500">Phone</div>
-                                            <div className="text-sm text-white group-hover:text-[#a855f7] transition-colors">{siteConfig.phone}</div>
+                                            <div className="text-sm text-white group-hover:text-[#a855f7] transition-colors">{obfuscatePhone(siteConfig.phone)}</div>
                                         </div>
-                                    </a>
+                                    </button>
 
                                     <div className="flex items-center gap-4 p-4 rounded-xl bg-white/3">
                                         <div className="w-10 h-10 rounded-lg bg-[#10b981]/10 flex items-center justify-center text-[#10b981]">

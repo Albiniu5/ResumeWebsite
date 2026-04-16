@@ -17,12 +17,12 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <Skills />
         <Education />
         <Experience />
+        <TechStack />
+        <Skills />
         <Projects />
         <NetworkDemo />
-        <TechStack />
         <Philosophy />
         <Contact />
       </main>
